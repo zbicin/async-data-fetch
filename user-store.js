@@ -3,20 +3,25 @@ const DUMMY_POSTS_DATA = require('./dummy-data/posts.json');
 
 class UserStore {
     getUser() {
-        return DUMMY_USER_DATA;
+        return Promise.resolve(DUMMY_USER_DATA);
     }
 
     getPosts() {
-        return DUMMY_POSTS_DATA;
+        return Promise.resolve(DUMMY_POSTS_DATA);
     }
 
     getUserWithPosts() {
-        const user = this.getUser();
-        const posts = this.getPosts();
+        return Promise.all([
+            this.getUser(),
+            this.getPosts()
+        ]).then((results) => {
+            const user = results[0];
+            const posts = results[1];
+    
+            user.posts = posts;
 
-        user.posts = posts;
-
-        return user;        
+            return Promise.resolve(user);
+        });
     }
 }
 
