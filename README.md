@@ -94,3 +94,5 @@ return this.httpClient.get(url)
 2. There would be no need in writing `HttpClient` since such implementations are already in the npm registry.
 
 3. The project would be probably transpiled to ES5 using Babel in order to ensure compatibility with older environments.
+
+4. ES6 `import` and `export` keywords would be used instead of Node's module system based on `require` and `module.exports`.
