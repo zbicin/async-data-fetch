@@ -11,7 +11,12 @@ class UserStore {
     }
 
     getUserWithPosts() {
-        throw new Error('Not implemented yet.');
+        const user = this.getUser();
+        const posts = this.getPosts();
+
+        user.posts = posts;
+
+        return user;        
     }
 }
 
